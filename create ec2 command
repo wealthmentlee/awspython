@@ -1,0 +1,14 @@
+// Creating an ec2 instance with aws cli ec2
+
+aws ec2 run-instances --image-id ami-864d84ee --key-name JeffLee --security-group-ids sg-8c4607e9 sg-0a57116f --user-data file://~/git/sewealthement/cloudinit.sh --instance-type t2.micro --placement AvailabilityZone=us-east-1a --block-device-mappings file://~/git/sewealthement/blockmappings.json --subnet-id subnet-ff7ebf88 --associate-public-ip-address
+
+
+// Adding tags to an ec2 instance
+aws ec2 create-tags --resources i-8b43d460 --tags Key=Name,Value="ApachePHP5 w DB on Public v3"
+
+// Adding a machine to a Load Balancer
+aws elb register-instances-with-load-balancer --load-balancer-name WealthmentLB --instances i-8b43d460
+
+// Terminating an ec2 instance
+aws ec2 terminate-instances --instance-ids i-b200ab59
+
